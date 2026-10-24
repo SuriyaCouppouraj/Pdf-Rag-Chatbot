@@ -1,0 +1,10 @@
+method,chunk_size,overlap,chunks,retrieval_hit,answer_acc,refusal_acc,overall
+vector,400,80,16,93%,-,-,-
+hybrid,400,80,16,90%,-,-,-
+rerank,400,80,16,97%,-,-,-
+vector,800,150,8,87%,-,-,-
+hybrid,800,150,8,87%,-,-,-
+rerank,800,150,8,97%,-,-,-
+vector,1200,200,8,87%,-,-,-
+hybrid,1200,200,8,90%,-,-,-
+rerank,1200,200,8,97%,-,-,-
