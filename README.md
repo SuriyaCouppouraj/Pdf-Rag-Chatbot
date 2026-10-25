@@ -2,14 +2,10 @@
 
 Ask questions about your PDFs in plain language. Every answer cites the page it came from, and the bot says "I don't know" when the document doesn't contain the answer.
 
-## Demo
-
-(Add your demo video here.)
-
 ## Features
 
 - Upload several PDFs and chat with them in a dark-themed Streamlit app
-- Page-level citations and a Sources panel that shows the exact passages used
+- Page-level citations, plus a Sources panel that shows the exact passages used
 - Refuses to answer when the answer is not in the documents
 - Optional cross-encoder reranking for more accurate retrieval
 - Works with Gemini or Groq (choose one by setting an API key)
@@ -43,11 +39,11 @@ Reproduce:
 python eval.py Nimbus_Tech_Employee_Handbook.pdf --k 1 --methods vector hybrid rerank
 ```
 
-## Setup
+## Quick start
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/pdf-rag-chatbot.git
-cd pdf-rag-chatbot
+git clone https://github.com/SuriyaCouppouraj/Pdf-Rag-Chatbot.git
+cd Pdf-Rag-Chatbot
 pip install -r requirements.txt
 ```
 
@@ -58,14 +54,44 @@ GEMINI_API_KEY=your-key
 LLM_MODEL=exact-model-name
 ```
 
-To use Groq instead, set `GROQ_API_KEY` in `.env`. Run `python list_models.py` to see which Gemini models your key can use.
-
-Start the app:
+Run `python list_models.py` to see which Gemini models your key can use, then start the app:
 
 ```bash
 streamlit run app.py
 ```
 
+Open http://localhost:8501 in your browser.
+
+## Configuration
+
+| Variable | Purpose |
+|---|---|
+| `GEMINI_API_KEY` | Use Gemini |
+| `GROQ_API_KEY` | Use Groq instead |
+| `LLM_PROVIDER` | Choose `gemini` or `groq` when both keys are set |
+| `LLM_MODEL` | Exact model name. The built-in default is only a guess, so set this |
+
+## Project structure
+
+```
+app.py           Streamlit app (interface, retrieval, reranking)
+llm_client.py    LLM calls for Gemini and Groq, with retries and timeouts
+eval.py          Retrieval evaluation (compares chunk sizes and methods)
+list_models.py   Lists the Gemini models your key can use
+rag.py           Early command-line version
+Nimbus_Tech_Employee_Handbook.pdf   Sample document for testing and evaluation
+```
+
+## Limitations
+
+- Only text is read. Scanned PDFs need OCR first, and tables and images are not understood.
+- All uploaded PDFs are searched together (no per-document filter yet).
+- Free-tier limits and model names change. If you see "model not found", update `LLM_MODEL`.
+
 ## Tech stack
 
 Python, Streamlit, ChromaDB, sentence-transformers, pypdf, Gemini or Groq.
+
+## Author
+
+Built by [SuriyaCouppouraj](https://github.com/SuriyaCouppouraj).
