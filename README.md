@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/f3c3c5c5-ab8f-4586-872e-d88d32cc09f7
+
 # PDF Q&A Chatbot (RAG)
 
 Ask questions about your PDFs in plain language. Every answer cites the page it came from, and the bot says "I don't know" when the document doesn't contain the answer.
